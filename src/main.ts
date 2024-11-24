@@ -78,3 +78,51 @@ const withdrawMoney = (user: User, amount: number): void => {
 };
 // Withdraw money
 withdrawMoney(newUser, 200);
+
+// کار به کارت 
+const transferMoney =(sourceUser:User,destinationUser: User, amount: number):void=>{
+  if (sourceUser.balance < amount) {
+    console.log("موجودی کافی نمی باشد");
+    return;
+}
+sourceUser.balance -= amount;
+destinationUser.balance += amount;
+console.log(`جابه جایی ${amount} از ${sourceUser.accountNumber} به ${destinationUser.accountNumber} انجام شد.`);
+
+
+}
+// // Transfer money (assuming we have two users: newUser and anotherUser)
+// const anotherUser = createUser("ali", "kazemi", "1122334455", "ali.kazemi@example.com", new Date("1992-08-24"));
+// // depositMoney(anotherUser, 500);
+// transferMoney(newUser, anotherUser, 300);
+
+const resetPassword = (user: User, oldPassword: string, newPassword: string): void => {
+  if (user.password !== oldPassword) {
+      console.log("رمز عبور نادرست است.");
+      return;
+  }
+  if (newPassword.length !== 6) {
+      console.log("رمز عبور باید 6 رقمی باشد.");
+      return;
+  }
+  user.password = newPassword;
+  console.log("رمز عبور با موفقیت تغییر یافت.");
+};
+
+const closeAccount = (user: User): void => {
+  console.log(`حساب کاربری بسته شد. ${user.firstName} ${user.lastName} مقدار  ${user.balance} دریاقت شد`);
+  user.balance = 0;
+  // Remove user from the system (this could be done with a JSON server delete operation)
+};
+// const authenticate = (user: User, password: string): boolean => {
+//   if (user.password !== password) {
+//       console.log("Incorrect password.");
+//       return false;
+//   }
+//   return true;
+// };
+// Reset password
+resetPassword(newUser, newUser.password, "654321");
+
+// Close the account
+closeAccount(newUser);
