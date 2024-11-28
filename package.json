@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "db":"json-server --watch db.json --port 3000",
     "build": "tsc && vite build",
     "preview": "vite preview"
   },
